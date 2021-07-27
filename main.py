@@ -42,7 +42,7 @@ async def link_handler(c, m):
     soup = BeautifulSoup(r.content,'html5lib')  
     links = soup.findAll('a')  
     video_links = [archive_url + link['href'] for link in links if link['href'].endswith('mp4')]
-    await message.reply(f"{video_links}")
+    await m.reply(f"{video_links}")
 
 
 bot.run()
