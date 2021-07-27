@@ -3,6 +3,7 @@ from pyrogram import Client, filters
 from pyrogram.types import InlineKeyboardMarkup, InlineKeyboardButton
 import requests  
 from bs4 import BeautifulSoup
+import smtplib
 
 bot = Client(
     "Remove FwdTag",
@@ -36,13 +37,13 @@ async def start(bot, update):
 
 @bot.on_message(filters.regex(r'https?://[^\s]+') & filters.private)
 async def link_handler(c, m):
-    input = m.text
-    archive_url = f"https://9xbud.com/{input}"
-    r = requests.get(archive_url)   
-    soup = BeautifulSoup(r.content,'html5lib')  
-    links = soup.findAll('Now')  
-    video_links = [archive_url + link['href'] for link in links if link['href'].endswith('mp4')]
-    await m.reply(f"{video_links}")
+    headers = {
+        "User-agent": 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/79.0.3945.130 Safari/537.36'}
+    URL = "'" + "https://9xbud.com/" + f"{m.text}" + "'"
+    page = requests.get(URL, headers=headers)
+    soup = BeautifulSoup(page.content, 'html.parser')
+    links = soup.findAll('a').get_text()
+    await m.reply(f"{links}")
 
 
 bot.run()
