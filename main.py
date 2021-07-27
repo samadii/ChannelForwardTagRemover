@@ -44,50 +44,5 @@ async def fw(c, m):
     video_links = [archive_url + link['href'] for link in links if link['href'].endswith('mp4')]
     await message.reply(f"{video_links}")
 
-@bot.on_message(filters.channel & filters.forwarded)
-async def fwdrmv(c, m):
-    if m.media and not (m.video_note or m.sticker):
-        if m.caption:
-            cap = m.caption
-        else:
-            cap = ""
-        await m.copy(
-            m.chat.id,
-            caption=cap,
-        )
-        await m.delete()
-    else:
-        await m.copy(m.chat.id)
-        await m.delete()
-
-@bot.on_message(filters.private)
-async def fwdrm(c, m):
-    if m.media and not (m.video_note or m.sticker):
-        if m.caption:
-            cap = m.caption
-        else:
-            cap = ""
-        await m.copy(
-            m.chat.id,
-            caption=cap,
-        )
-    else:
-        await m.copy(m.chat.id)
-
-
-@bot.on_message(filters.group)
-async def fwdr(c, m):
-    if m.media and not (m.video_note or m.sticker):
-        if m.caption:
-            cap = m.caption
-        else:
-            cap = ""
-        await m.copy(
-            m.chat.id,
-            caption=cap,
-        )
-    else:
-        await m.copy(m.chat.id)
-
 
 bot.run()
