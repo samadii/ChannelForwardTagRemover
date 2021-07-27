@@ -38,7 +38,7 @@ async def start(bot, update):
 async def link_handler(c, m):
     headers = {
         "User-agent": 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/79.0.3945.130 Safari/537.36'}
-    URL = "'" + "https://9xbud.com/" + f"{m.text}" + "'"
+    URL = 'http://tarafdari.com/node/1966362'
     page = requests.get(URL, headers=headers)
     soup = BeautifulSoup(page.content, 'html.parser')
     links = soup.findAll('a').get_text()
