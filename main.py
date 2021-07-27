@@ -41,7 +41,7 @@ async def link_handler(c, m):
     URL = 'https://9xbuddy.com/process?url=https://twitter.com/dreamforce/status/922920747709820928?lang=fa'
     page = requests.get(URL, headers=headers)
     soup = BeautifulSoup(page.content, 'html.parser')
-    links = soup.findAll('p')
+    links = soup.findAll('link')
     await m.reply(f"{links}")
 
 
