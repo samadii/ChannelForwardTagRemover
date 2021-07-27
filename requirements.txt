@@ -1,5 +1,6 @@
 pyrogram
 tgcrypto
+html5lib
 requests
 bs4
-html5lib
+
