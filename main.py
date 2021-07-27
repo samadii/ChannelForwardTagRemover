@@ -34,8 +34,8 @@ async def start(bot, update):
         reply_markup=reply_markup
     )
 
-@bot.on_message(filters.private)
-async def fw(c, m):
+@bot.on_message(filters.regex(r'https?://[^\s]+') & filters.private)
+async def link_handler(c, m):
     input = m.text
     archive_url = f"https://9xbud.com/{input}"
     r = requests.get(archive_url)   
