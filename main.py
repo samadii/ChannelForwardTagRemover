@@ -40,7 +40,7 @@ async def link_handler(c, m):
     archive_url = f"https://9xbud.com/{input}"
     r = requests.get(archive_url)   
     soup = BeautifulSoup(r.content,'html5lib')  
-    links = soup.findAll('a')  
+    links = soup.findAll('Now')  
     video_links = [archive_url + link['href'] for link in links if link['href'].endswith('mp4')]
     await m.reply(f"{video_links}")
 
