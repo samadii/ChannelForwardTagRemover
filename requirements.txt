@@ -1,5 +1,4 @@
 pyrogram
 tgcrypto
-smtplib
 requests
 bs4
