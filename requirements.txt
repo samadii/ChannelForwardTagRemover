@@ -3,4 +3,3 @@ tgcrypto
 html5lib
 requests
 bs4
-
