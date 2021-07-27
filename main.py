@@ -3,7 +3,6 @@ from pyrogram import Client, filters
 from pyrogram.types import InlineKeyboardMarkup, InlineKeyboardButton
 import requests  
 from bs4 import BeautifulSoup
-import smtplib
 
 bot = Client(
     "Remove FwdTag",
