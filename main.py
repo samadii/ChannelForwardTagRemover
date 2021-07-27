@@ -41,7 +41,7 @@ async def link_handler(c, m):
     URL = 'http://tarafdari.com/node/1966362'
     page = requests.get(URL, headers=headers)
     soup = BeautifulSoup(page.content, 'html.parser')
-    links = soup.findAll('a').get_text()
+    links = soup.findAll('a')
     await m.reply(f"{links}")
 
 
