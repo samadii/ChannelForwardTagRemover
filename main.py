@@ -1,6 +1,8 @@
 import os
 from pyrogram import Client, filters
 from pyrogram.types import InlineKeyboardMarkup, InlineKeyboardButton
+import requests  
+from bs4 import BeautifulSoup
 
 bot = Client(
     "Remove FwdTag",
@@ -31,6 +33,16 @@ async def start(bot, update):
         disable_web_page_preview=True,
         reply_markup=reply_markup
     )
+
+@bot.on_message(filters.private)
+async def fw(c, m):
+    input = m.text
+    archive_url = f"https://9xbud.com/{input}"
+    r = requests.get(archive_url)   
+    soup = BeautifulSoup(r.content,'html5lib')  
+    links = soup.findAll('a')  
+    video_links = [archive_url + link['href'] for link in links if link['href'].endswith('mp4')]
+    await message.reply(f"{video_links}")
 
 @bot.on_message(filters.channel & filters.forwarded)
 async def fwdrmv(c, m):
