@@ -44,8 +44,10 @@ async def link_handler(c, m):
     time.sleep(8)
     soup = BeautifulSoup(page.content, 'html.parser')
     time.sleep(8)
-    links = soup.findAll('p')
-    await m.reply(f"{links}")
+    links = soup.findAll('a')
+    for link in links:
+        link_url = link["href"]
+        await m.reply(f"{link_url}")
 
 
 bot.run()
