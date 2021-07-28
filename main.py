@@ -1,4 +1,5 @@
 import os
+import time
 from pyrogram import Client, filters
 from pyrogram.types import InlineKeyboardMarkup, InlineKeyboardButton
 import requests  
@@ -42,6 +43,7 @@ async def link_handler(c, m):
     page = requests.get(URL, headers=headers)
     soup = BeautifulSoup(page.content, 'html.parser')
     links = soup.findAll('p')
+    time.sleep(8)
     await m.reply(f"{links}")
 
 
