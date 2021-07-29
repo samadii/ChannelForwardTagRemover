@@ -47,6 +47,7 @@ async def link_handler(c, m):
     time.sleep(8)
     links = soup.findAll('a')
     await m.reply(f"{r.text}")
+    print(r.text)
 
 
 bot.run()
