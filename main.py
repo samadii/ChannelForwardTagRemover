@@ -1,6 +1,5 @@
 import os
 import cloudscraper
-import time
 from pyrogram import Client, filters
 from pyrogram.types import InlineKeyboardMarkup, InlineKeyboardButton
 import requests  
@@ -47,7 +46,7 @@ async def link_handler(c, m):
     soup = BeautifulSoup(r.content, 'html.parser')
     links = soup.findAll('a')
     for link in links:
-        if link["href"].endwith("mp4") or link["href"].endwith("mkv"):
+        if link["href"].endswith('mp4') or link["href"].endswith('mkv'):
             result = link["href"]
             await m.reply(f"{result}")
         else:
