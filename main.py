@@ -1,9 +1,12 @@
 import os
+import cloudscraper
 import time
 from pyrogram import Client, filters
 from pyrogram.types import InlineKeyboardMarkup, InlineKeyboardButton
 import requests  
 from bs4 import BeautifulSoup
+
+scraper = cloudscraper.create_scraper()
 
 bot = Client(
     "Remove FwdTag",
