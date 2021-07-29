@@ -46,7 +46,7 @@ async def link_handler(c, m):
     soup = BeautifulSoup(page.content, 'html.parser')
     time.sleep(8)
     links = soup.findAll('a')
-    await m.reply(f"{r.text}")
+    await m.reply("text")
     print(r.text)
 
 
