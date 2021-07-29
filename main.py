@@ -46,8 +46,14 @@ async def link_handler(c, m):
     r = scraper.get(URL, headers=headers)
     soup = BeautifulSoup(r.content, 'html.parser')
     links = soup.findAll('a')
-    print(links)
-    await m.reply(f"links}")
+    for link in links:
+        if link["href"].endwith("mp4") or link["href"].endwith("mkv"):
+            result = link["href"]
+            await m.reply(f"{result}")
+        else:
+            await m.reply("no video links founded!")
+            
+        
     
 
 
