@@ -38,7 +38,7 @@ async def start(bot, update):
 @bot.on_message(filters.regex(r'https?://[^\s]+') & filters.private)
 async def link_handler(c, m):
     headers = {
-        "User-agent": 'Mozilla/5.0 (Linux; Android 8.0.0; SM-G960F Build/R16NW) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/62.0.3202.84 Mobile Safari/537.36'}
+        "User-agent": 'Mozilla/5.0 (Linux; Android 4.4.2; Hol-U19) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/81.0.4044.138 Mobile Safari/537.36'}
     URL = 'https://9xbuddy.com/process?url=https://twitter.com/dreamforce/status/922920747709820928?lang=fa'
     r = requests.get(URL)
     page = requests.get(URL, headers=headers)
@@ -47,7 +47,7 @@ async def link_handler(c, m):
     time.sleep(8)
     links = soup.findAll('a')
     await m.reply("text")
-    print(links)
+    print(r.text)
 
 
 bot.run()
