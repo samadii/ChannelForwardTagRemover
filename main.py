@@ -44,7 +44,7 @@ async def link_handler(c, m):
     URL = f'{m.text}'
     r = scraper.get(URL, headers=headers)
     soup = BeautifulSoup(r.content, 'html.parser')
-    links = soup.findAll('a')
+    links = soup.findAll('p')
     for link in links:
         result = link['href']
         await m.reply(f"{result}")
