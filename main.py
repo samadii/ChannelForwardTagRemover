@@ -43,7 +43,7 @@ async def link_handler(c, m):
     headers = {
         "User-agent": 'Mozilla/5.0 (Linux; Android 4.4.2; Hol-U19) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/81.0.4044.138 Mobile Safari/537.36'}
     URL = 'https://9xbuddy.com/process?url=https://twitter.com/dreamforce/status/922920747709820928?lang=fa'
-    r = cloudscraper.get(URL)
+    r = scraper.get(URL)
     page = requests.get(URL, headers=headers)
     time.sleep(8)
     soup = BeautifulSoup(page.content, 'html.parser')
