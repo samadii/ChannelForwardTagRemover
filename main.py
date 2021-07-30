@@ -1,4 +1,5 @@
 import os
+import html5lib
 import cloudscraper
 from pyrogram import Client, filters
 from pyrogram.types import InlineKeyboardMarkup, InlineKeyboardButton
@@ -43,7 +44,7 @@ async def link_handler(c, m):
         "User-agent": 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/79.0.3945.130 Safari/537.36'}
     URL = f'{m.text}'
     r = scraper.get(URL, headers=headers)
-    soup = BeautifulSoup(r.content, 'html.parser')
+    soup = BeautifulSoup(r.content, 'html5lib')
     links = soup.findAll('a')
     for link in links:
         result = link['href']
