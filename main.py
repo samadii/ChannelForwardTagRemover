@@ -10,7 +10,6 @@ bot = Client(
 )
 
 
-
 START_TXT = """
 Hi {}, I'm Forward Tag Remover bot.\n\nForward me some messages, i will remove forward tag from them.\nAlso can do it in channels.
 """
@@ -48,7 +47,7 @@ async def fwdrmv(c, m):
         await m.copy(m.chat.id)
         await m.delete()
 
-@bot.on_message(filters.private)
+@bot.on_message(filters.private | filters.group)
 async def fwdrm(c, m):
     if m.media and not (m.video_note or m.sticker):
         if m.caption:
@@ -62,20 +61,6 @@ async def fwdrm(c, m):
     else:
         await m.copy(m.chat.id)
 
-
-@bot.on_message(filters.group)
-async def fwdr(c, m):
-    if m.media and not (m.video_note or m.sticker):
-        if m.caption:
-            cap = m.caption
-        else:
-            cap = ""
-        await m.copy(
-            m.chat.id,
-            caption=cap,
-        )
-    else:
-        await m.copy(m.chat.id)
 
 
 bot.run()
