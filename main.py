@@ -1,6 +1,7 @@
-import os
+import os, asyncio
 from pyrogram import Client, filters
 from pyrogram.types import InlineKeyboardMarkup, InlineKeyboardButton
+from pyrogram.errors import FloodWait
 
 bot = Client(
     "Remove FwdTag",
@@ -33,34 +34,26 @@ async def start(bot, update):
 
 @bot.on_message(filters.channel & filters.forwarded)
 async def fwdrmv(c, m):
-    if m.media and not (m.video_note or m.sticker):
-        if m.caption:
-            cap = m.caption
+    try:
+        if m.media and not (m.video_note or m.sticker):
+            await m.copy(m.chat.id, caption = m.caption if m.caption else None)
+            await m.delete()
         else:
-            cap = ""
-        await m.copy(
-            m.chat.id,
-            caption=cap,
-        )
-        await m.delete()
-    else:
-        await m.copy(m.chat.id)
-        await m.delete()
+            await m.copy(m.chat.id)
+            await m.delete()
+    except FloodWait as e:
+        await asyncio.sleep(e.x)
+
 
 @bot.on_message(filters.private | filters.group)
 async def fwdrm(c, m):
-    if m.media and not (m.video_note or m.sticker):
-        if m.caption:
-            cap = m.caption
+    try:
+        if m.media and not (m.video_note or m.sticker):
+            await m.copy(m.chat.id, caption = m.caption if m.caption else None)
         else:
-            cap = ""
-        await m.copy(
-            m.chat.id,
-            caption=cap,
-        )
-    else:
-        await m.copy(m.chat.id)
-
+            await m.copy(m.chat.id)
+    except FloodWait as e:
+        await asyncio.sleep(e.x)
 
 
 bot.run()
