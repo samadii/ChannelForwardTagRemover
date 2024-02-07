@@ -42,7 +42,7 @@ async def fwdrmv(c, m):
             await m.copy(m.chat.id)
             await m.delete()
     except FloodWait as e:
-        await asyncio.sleep(e.x)
+        await asyncio.sleep(e.value)
 
 
 @bot.on_message(filters.private | filters.group)
@@ -53,7 +53,7 @@ async def fwdrm(c, m):
         else:
             await m.copy(m.chat.id)
     except FloodWait as e:
-        await asyncio.sleep(e.x)
+        await asyncio.sleep(e.value)
 
 
 bot.run()
